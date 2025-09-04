@@ -7,7 +7,6 @@
 }
 .headersection {
   background: linear-gradient(to top left, #e6c645, #e4cd70, #e3cf7f);
-  background-repeat: no-repeat;
   width: auto;
   min-height: 100vh;
 }
@@ -16,12 +15,13 @@
   align-items: center;
   padding: 20px 30px;
   color: #416633;
+  position: relative;
 }
-.navbar a {
+.navbar a.nav {
   text-decoration: none;
   color: #416633;
 }
-.navbar a::after {
+.navbar a.nav::after {
   content: "";
   background-color: #416633;
   height: 2px;
@@ -29,7 +29,7 @@
   display: block;
   transition: width 0.3s ease;
 }
-.navbar a:hover::after {
+.navbar a.nav:hover::after {
   width: 100%;
 }
 .navbar_left {
@@ -149,8 +149,23 @@ div.grid1 h4 {
   font-size: 0.7em;
   font-weight: 300;
 }
+#checkbox{
+    display: none;
+}
+.icon {
+    position: absolute;
+    right: 5%;
+    font-size: 1.8rem;
+    color: white;
+    background-color: #416633;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: none;
+}
+
 .menu-toggle {
-  display: none; 
+  display: none;
   background: #416633;
   color: #fff;
   border: none;
@@ -159,9 +174,33 @@ div.grid1 h4 {
   border-radius: 8px;
   cursor: pointer;
 }
+.logingrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 70vw;
+  gap: 15px;
+  margin: 5em auto;
+  font-family: "poppins", sans-serif;
+}
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  background-color: #ededed;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 4px rgb(198, 194, 194);
+}
+.login_btn {
+  background-color: #416633;
+  color: white;
+  text-decoration: none;
+  padding: 6px 15px;
+  border-radius: 5px;
+}
 @media (max-width: 865px) {
-  .navbar {
-    flex-direction: row; 
+  .navbar { 
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
@@ -169,28 +208,64 @@ div.grid1 h4 {
   .navbar_left {
     margin-right: auto; 
   }
-
-  .menu-toggle {
-    display: block; 
-    margin-left: auto;
+  .icon {
+    display: inline-flex;
+  }
+  #checkbox:checked ~ .icon #menu-icon{
+    display: none;
+  }
+  .icon #close-icon{
+    display: none;
+  }
+  #checkbox:checked ~ .icon #close-icon{
+    display: block;
   }
 
-  .navbar_right {
-    display: none; 
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
-    text-align: center;
-    background: #f5f5f5;
-    padding: 1em;
-    border-radius: 8px;
-    width: 100%;
-  }
-
-  .navbar_right.active {
+  .navbar_right{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 80%;
+    height: 0;
+    background-color : #9b9f99;
+    backdrop-filter: blur(40px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: 0.3s ease;
     display: flex;
+    flex-direction: column;   
+    align-items: center;
+    border-radius: 10px;
+    gap: 0; 
+    transform: translateX(-50%)
   }
- 
+  #checkbox:checked ~ .navbar_right{
+        height: auto;
+        padding: 1rem 0;
+    }
+    .navbar_right a{
+        display: block;
+        color: #416633;
+        margin: 1.5rem 0;
+        font-size: 1.1rem;
+        text-align: center;
+        transform: translateY(-50px);
+        opacity: 0;
+        transition: 0.3s ease;
+        
+    }
+    #checkbox:checked ~ .navbar_right a{
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(.15s * var(--i));
+    }
+    .signin {
+      width: 200px;
+      background-color: #ff6600; /* example: orange button */
+      border-radius: 8px;
+      padding: 12px 0;
+  }
   .hero {
     flex-direction: column;
     text-align: center;
@@ -227,5 +302,19 @@ div.grid1 h4 {
     margin-top: 30px;
     font-size: 1.2em;
     text-align: center;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 90vw;
+  }
+  .contact .text {
+    margin-top: 30px;
+    font-size: 1.2em;
+    text-align: center;
+  }
+  .logingrid {
+    grid-template-columns: 1fr;
+    max-width: 80vw;
   }
 }
