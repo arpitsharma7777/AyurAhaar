@@ -265,6 +265,7 @@ div.grid1 h4 {
       background-color: #ff6600; /* example: orange button */
       border-radius: 8px;
       padding: 12px 0;
+      cursor: pointer;
   }
   .hero {
     flex-direction: column;
@@ -317,4 +318,21 @@ div.grid1 h4 {
     grid-template-columns: 1fr;
     max-width: 80vw;
   }
+}
+footer{
+  padding: 20px ;
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(to bottom, #606060, #242424, #000000);
+}
+footer img{
+  display: block;
+  margin: auto;
+
+}
+footer .companyname{
+  color: white;
+  font-family: 'poppins', sans-serif;
+  font-size: 14px;
+  text-align: center;
+
 }
